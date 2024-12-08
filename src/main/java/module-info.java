@@ -1,8 +1,8 @@
-module com.pragoti.pragotiindustries {
+module com.pragoti.pragoti {
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens com.pragoti.pragotiindustries to javafx.fxml;
-    exports com.pragoti.pragotiindustries;
+    opens pragoti to javafx.fxml;
+    exports pragoti;
 }
