@@ -13,7 +13,7 @@ public class DeleteUserViewController
 
     @javafx.fxml.FXML
     public void initialize() {
-        refreshComboBox();
+        refreshSelectUserComboBox();
     }
 
     @javafx.fxml.FXML
@@ -23,10 +23,10 @@ public class DeleteUserViewController
         int id = Integer.parseInt(parts[1]);
         User.deleteUser(id);
         System.out.println("User with id " + id + " deleted");
-        refreshComboBox();
+        refreshSelectUserComboBox();
     }
 
-    private void refreshComboBox() {
+    private void refreshSelectUserComboBox() {
         selectUserComboBox.getItems().clear();
         ArrayList<User> users = User.getAllUsers();
         for (User user : users) {

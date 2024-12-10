@@ -147,6 +147,7 @@ public class LayoutViewController {
 
     @javafx.fxml.FXML
     public void updateUserOnAction(ActionEvent actionEvent) {
+        switchToScene("UpdateUserInformationView.fxml");
     }
 
     @javafx.fxml.FXML

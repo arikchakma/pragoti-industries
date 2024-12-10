@@ -152,7 +152,7 @@ public abstract class User implements Serializable {
     }
 
     public static ArrayList<User> getAllUsers() {
-            return FileHandler.<User>readObjectFromFile("users.bin");
+        return FileHandler.<User>readObjectFromFile("users.bin");
     }
 
     public static User getUser(int id) {
@@ -181,6 +181,26 @@ public abstract class User implements Serializable {
         }
 
         users.removeIf(user -> user.getId() == id);
+        FileHandler.deleteFile("users.bin");
+        return FileHandler.<User>replaceFile(users, "users.bin");
+    }
+
+    public static boolean updateUser(User user) {
+        ArrayList<User> users = getAllUsers();
+        if (users == null) {
+            return false;
+        }
+
+
+        int indexOfUser = -1;
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId() == user.getId()) {
+                indexOfUser = i;
+                break;
+            }
+        }
+
+        users.set(indexOfUser, user);
         FileHandler.deleteFile("users.bin");
         return FileHandler.<User>replaceFile(users, "users.bin");
     }
