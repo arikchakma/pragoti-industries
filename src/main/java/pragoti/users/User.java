@@ -174,38 +174,4 @@ public abstract class User implements Serializable {
         return null;
     }
 
-    public static boolean saveUser(User user) {
-        return FileHandler.<User>writeObjectToFile(user, "users.bin");
-    }
-
-    public static boolean deleteUser(int id) {
-        ArrayList<User> users = getAllUsers();
-        if (users == null) {
-            return false;
-        }
-
-        users.removeIf(user -> user.getId() == id);
-        FileHandler.deleteFile("users.bin");
-        return FileHandler.<User>replaceFile(users, "users.bin");
-    }
-
-    public static boolean updateUser(User user) {
-        ArrayList<User> users = getAllUsers();
-        if (users == null) {
-            return false;
-        }
-
-
-        int indexOfUser = -1;
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getId() == user.getId()) {
-                indexOfUser = i;
-                break;
-            }
-        }
-
-        users.set(indexOfUser, user);
-        FileHandler.deleteFile("users.bin");
-        return FileHandler.<User>replaceFile(users, "users.bin");
-    }
 }

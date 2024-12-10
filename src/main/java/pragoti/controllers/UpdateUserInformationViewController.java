@@ -2,6 +2,7 @@ package pragoti.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
+import pragoti.users.Admin;
 import pragoti.users.User;
 
 import java.time.LocalDate;
@@ -122,7 +123,7 @@ public class UpdateUserInformationViewController {
         user.setDoj(doj);
         user.setGender(gender);
 
-        User.updateUser(user);
+        Admin.updateAndSaveUser(user);
         refreshSelectUserIdComboBox();
 
         alert.setAlertType(Alert.AlertType.INFORMATION);

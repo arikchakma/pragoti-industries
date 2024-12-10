@@ -1,7 +1,9 @@
 package pragoti.controllers;
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import pragoti.users.Admin;
 import pragoti.users.User;
 
 import java.util.ArrayList;
@@ -21,9 +23,15 @@ public class DeleteUserViewController
         String selectedUser = selectUserComboBox.getValue();
         String[] parts = selectedUser.split(" -- ");
         int id = Integer.parseInt(parts[1]);
-        User.deleteUser(id);
-        System.out.println("User with id " + id + " deleted");
+
+        Admin.deleteUser(id);
         refreshSelectUserComboBox();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Success");
+        alert.setHeaderText("User deleted");
+        alert.setContentText("User with id: " + id + " has been deleted");
+        alert.showAndWait();
     }
 
     private void refreshSelectUserComboBox() {

@@ -9,7 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import pragoti.users.User;
 import pragoti.utils.ActivityLogger;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class UserActivityViewController {
@@ -22,7 +22,7 @@ public class UserActivityViewController {
     @javafx.fxml.FXML
     private TableColumn<ActivityLogger, String> activityTableColumn;
     @javafx.fxml.FXML
-    private TableColumn<ActivityLogger, LocalDate> dateTableColumn;
+    private TableColumn<ActivityLogger, LocalDateTime> dateTableColumn;
 
     @javafx.fxml.FXML
     public void initialize() {
@@ -35,7 +35,7 @@ public class UserActivityViewController {
 
         userIdTableColumn.setCellValueFactory(new PropertyValueFactory<ActivityLogger, Integer>("userId"));
         activityTableColumn.setCellValueFactory(new PropertyValueFactory<ActivityLogger, String>("activity"));
-        dateTableColumn.setCellValueFactory(new PropertyValueFactory<ActivityLogger, LocalDate>("date"));
+        dateTableColumn.setCellValueFactory(new PropertyValueFactory<ActivityLogger, LocalDateTime>("date"));
     }
 
     @javafx.fxml.FXML
@@ -52,13 +52,10 @@ public class UserActivityViewController {
         String[] parts = selectedUser.split(" -- ");
         Integer userId = Integer.parseInt(parts[1]);
         ArrayList<ActivityLogger> userActivityLogs = ActivityLogger.getUserActivityLogs(userId);
-//        System.out.println(userActivityLogs);
-//        activityLogTableView.getItems().clear();
-//        activityLogTableView.getItems().addAll(userActivityLogs);
+        userActivityLogs.sort((a, b) -> b.getDate().compareTo(a.getDate()));
 
-        for (ActivityLogger activityLogger : userActivityLogs) {
-            activityLogTableView.getItems().add(activityLogger);
-        }
+        activityLogTableView.getItems().clear();
+        activityLogTableView.getItems().addAll(userActivityLogs);
     }
 
 }

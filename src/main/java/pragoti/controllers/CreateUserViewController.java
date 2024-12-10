@@ -116,21 +116,13 @@ public class CreateUserViewController {
         }
 
         String gender = ((RadioButton) genderToggleGroup.getSelectedToggle()).getText();
-        User user = null;
-        if(designation.equals("Admin")) {
-            user = new Admin(id, name, gender, email, designation, dob, doj, password, salary);
-        } else if (designation.equals("Logistic Officer")) {
-            user = new LogisticOfficer(id, name, gender, email, designation, dob, doj, password, salary);
-        }
-
+        User user = Admin.createAndSaveUser(id, name, gender, email, designation, dob, doj, password, salary);
         if(user == null) {
             alert.setTitle("Error");
             alert.setHeaderText("Invalid Designation");
             alert.showAndWait();
             return;
         }
-
-        User.saveUser(user);
 
         nameTextField.clear();
         emailTextField.clear();

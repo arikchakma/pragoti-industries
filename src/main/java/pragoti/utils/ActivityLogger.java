@@ -1,18 +1,18 @@
 package pragoti.utils;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ActivityLogger implements Serializable {
     protected String activity;
-    protected LocalDate date;
+    protected LocalDateTime date;
     protected Integer userId;
 
     public ActivityLogger() {
     }
 
-    public ActivityLogger(String activity, LocalDate date, Integer userId) {
+    public ActivityLogger(String activity, LocalDateTime date, Integer userId) {
         this.activity = activity;
         this.date = date;
         this.userId = userId;
@@ -26,11 +26,11 @@ public class ActivityLogger implements Serializable {
         this.activity = activity;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -52,7 +52,8 @@ public class ActivityLogger implements Serializable {
     }
 
     public static void log(String activity, Integer userId) {
-        ActivityLogger activityLogger = new ActivityLogger(activity, LocalDate.now(), userId);
+        System.out.println(LocalDateTime.now());
+        ActivityLogger activityLogger = new ActivityLogger(activity, LocalDateTime.now(), userId);
         FileHandler.writeObjectToFile(activityLogger, "activity_logs.bin");
     }
 

@@ -3,6 +3,7 @@ package pragoti.controllers;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import pragoti.users.Admin;
 import pragoti.users.User;
 
 import java.util.ArrayList;
@@ -32,14 +33,14 @@ public class ReactiveUserViewController {
         }
 
         user.setStatus("active");
-        User.updateUser(user);
+        Admin.updateAndSaveUser(user);
+        refreshSelectUserComboBox();
 
         alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
         alert.setHeaderText("User reactivated");
         alert.setContentText("User with id " + id + " reactivated");
         alert.showAndWait();
-        refreshSelectUserComboBox();
     }
 
     private void refreshSelectUserComboBox() {
