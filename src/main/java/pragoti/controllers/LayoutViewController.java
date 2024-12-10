@@ -129,11 +129,13 @@ public class LayoutViewController {
     }
 
     @javafx.fxml.FXML
-    public void reactiveDisbaledUserOnAction(ActionEvent actionEvent) {
+    public void reactiveDisabledUserOnAction(ActionEvent actionEvent) {
+        switchToScene("ReactiveUserView.fxml");
     }
 
     @javafx.fxml.FXML
     public void analyzeGenderDistributionOnAction(ActionEvent actionEvent) {
+        switchToScene("GenderDistributionView.fxml");
     }
 
     @javafx.fxml.FXML
@@ -142,7 +144,8 @@ public class LayoutViewController {
     }
 
     @javafx.fxml.FXML
-    public void departmentWiseEmployeeDistributionOnAction(ActionEvent actionEvent) {
+    public void employeeActiveInactiveDistributionOnAction(ActionEvent actionEvent) {
+        switchToScene("EmployeeActiveInactiveDistributionView.fxml");
     }
 
     @javafx.fxml.FXML
@@ -151,7 +154,8 @@ public class LayoutViewController {
     }
 
     @javafx.fxml.FXML
-    public void disbaleUserOnAction(ActionEvent actionEvent) {
+    public void disableUserOnAction(ActionEvent actionEvent) {
+        switchToScene("DisableUserView.fxml");
     }
 
     protected void switchToScene(String fxmlFileName) {

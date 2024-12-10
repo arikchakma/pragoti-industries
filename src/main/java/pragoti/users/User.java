@@ -132,7 +132,11 @@ public abstract class User implements Serializable {
     }
 
     public static User verifyLogin(int id, String password) {
-        // TODO: implement with file handling later
+        User user = getUser(id);
+        if (user != null && user.getPassword().equals(password) && user.getStatus().equals("active")) {
+            return user;
+        }
+
         return null;
     }
 

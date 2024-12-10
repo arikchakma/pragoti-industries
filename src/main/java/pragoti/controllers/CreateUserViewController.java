@@ -3,6 +3,7 @@ package pragoti.controllers;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import pragoti.users.Admin;
+import pragoti.users.LogisticOfficer;
 import pragoti.users.User;
 
 import java.time.LocalDate;
@@ -98,6 +99,7 @@ public class CreateUserViewController {
         }
 
         // password must be at least 5 characters long
+        // TODO: add more password validation rules
         if (password.length() < 5) {
             alert.setTitle("Error");
             alert.setHeaderText("Password must be at least 5 characters long");
@@ -117,7 +119,7 @@ public class CreateUserViewController {
         if(designation.equals("Admin")) {
             user = new Admin(id, name, gender, email, designation, dob, doj, password, salary);
         } else if (designation.equals("Logistic Officer")) {
-            // TODO: implement LogisticOfficer
+            user = new LogisticOfficer(id, name, gender, email, designation, dob, doj, password, salary);
         }
 
         if(user == null) {

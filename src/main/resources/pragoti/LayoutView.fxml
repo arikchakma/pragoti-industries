@@ -32,12 +32,12 @@
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#createUserOnAction" text="Create User" />
                         <MenuItem mnemonicParsing="false" onAction="#deleteUserOnAction" text="Delete User" />
-                        <MenuItem mnemonicParsing="false" onAction="#disbaleUserOnAction" text="Disable User" />
-                        <MenuItem mnemonicParsing="false" onAction="#reactiveDisbaledUserOnAction" text="Reactive Disabled User" />
+                        <MenuItem mnemonicParsing="false" onAction="#disableUserOnAction" text="Disable User" />
+                        <MenuItem mnemonicParsing="false" onAction="#reactiveDisabledUserOnAction" text="Reactive Disabled User" />
                         <MenuItem mnemonicParsing="false" onAction="#updateUserOnAction" text="Update User" />
                         <MenuItem mnemonicParsing="false" onAction="#viewUserActivityOnAction" text="View User Activity" />
                         <MenuItem mnemonicParsing="false" onAction="#analyzeGenderDistributionOnAction" text="Analyze Gender Distribution" />
-                        <MenuItem mnemonicParsing="false" onAction="#departmentWiseEmployeeDistributionOnAction" text="Department-Wise Employee Distribution" />
+                        <MenuItem mnemonicParsing="false" onAction="#employeeActiveInactiveDistributionOnAction" text="Department-Wise Employee Active/Inactive Distribution" />
                     </items>
                 </Menu>
             <Menu fx:id="logisticOfficerMenu" mnemonicParsing="false" text="Logistic Officer">

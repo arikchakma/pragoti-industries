@@ -45,20 +45,8 @@ public class LoginViewController {
             return;
         }
 
-        User user = User.getUser(userId);
+        User user = User.verifyLogin(userId, password);
         if (user == null) {
-            alert.setTitle("Error");
-            alert.setHeaderText("Incorrect password or user id");
-            alert.setContentText("Incorrect password or user id for user: " + userId);
-            alert.showAndWait();
-            return;
-        }
-
-        // otherwise user is found
-        // check if password is correct
-        // if yes, then show the user's dashboard
-        // if no, then show an error message
-        if (!user.getPassword().equals(password)) {
             alert.setTitle("Error");
             alert.setHeaderText("Incorrect password or user id");
             alert.setContentText("Incorrect password or user id for user: " + userId);
