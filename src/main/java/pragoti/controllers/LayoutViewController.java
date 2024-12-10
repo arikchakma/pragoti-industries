@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import pragoti.MainApplication;
 import pragoti.users.*;
+import pragoti.utils.ActivityLogger;
 
 public class LayoutViewController {
     @javafx.fxml.FXML
@@ -118,6 +119,8 @@ public class LayoutViewController {
             Scene scene = new Scene(fxmlLoader.load());
             Stage stage = (Stage) layoutBorderPane.getScene().getWindow();
             stage.setScene(scene);
+
+            ActivityLogger.log("Logged out", currentUser.getId());
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -126,6 +129,7 @@ public class LayoutViewController {
 
     @javafx.fxml.FXML
     public void viewUserActivityOnAction(ActionEvent actionEvent) {
+        switchToScene("UserActivityView.fxml");
     }
 
     @javafx.fxml.FXML
@@ -163,6 +167,8 @@ public class LayoutViewController {
             FXMLLoader fxmlLoader = new javafx.fxml.FXMLLoader(
                     MainApplication.class.getResource(fxmlFileName)
             );
+
+            ActivityLogger.log("Switched to " + fxmlFileName.replace(".fxml", ""), currentUser.getId());
             layoutBorderPane.setCenter(fxmlLoader.load());
         } catch (Exception e) {
             e.printStackTrace();

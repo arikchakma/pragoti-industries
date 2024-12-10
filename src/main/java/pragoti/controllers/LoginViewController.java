@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import pragoti.MainApplication;
 import pragoti.users.Admin;
 import pragoti.users.User;
+import pragoti.utils.ActivityLogger;
 
 public class LoginViewController {
     @javafx.fxml.FXML
@@ -68,6 +69,7 @@ public class LoginViewController {
             stage.setScene(dashboardScene);
             LayoutViewController layoutViewController = dashboardFxmlLoader.getController();
             layoutViewController.setCurrentUser(user);
+            ActivityLogger.log("Logged in", userId);
         } catch (Exception e) {
         }
     }

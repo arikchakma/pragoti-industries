@@ -7,6 +7,7 @@ import pragoti.users.LogisticOfficer;
 import pragoti.users.User;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class CreateUserViewController {
     @javafx.fxml.FXML
