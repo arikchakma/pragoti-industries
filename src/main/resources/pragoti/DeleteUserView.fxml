@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pragoti.controllers.DeleteUserViewController">
+   <children>
+      <Label layoutX="241.0" layoutY="103.0" text="Delete User">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="201.0" layoutY="148.0" text="Select User" />
+      <ComboBox fx:id="selectUserComboBox" layoutX="201.0" layoutY="172.0" prefHeight="26.0" prefWidth="198.0" />
+      <Button layoutX="201.0" layoutY="228.0" mnemonicParsing="false" onAction="#deleteUserOnAction" prefHeight="26.0" prefWidth="198.0" style="-fx-background-color: red;" text="Delete User" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <Label layoutX="201.0" layoutY="203.0" text="You won't be able to revert this." textFill="#727272" />
+   </children>
+</AnchorPane>

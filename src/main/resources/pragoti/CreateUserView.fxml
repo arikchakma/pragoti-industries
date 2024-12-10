@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pragoti.controllers.CreateUserViewController">
+   <children>
+      <Label layoutX="349.0" layoutY="83.0" text="Name" textAlignment="RIGHT" />
+      <Label layoutX="113.0" layoutY="82.0" text="ID" textAlignment="RIGHT" />
+      <TextField fx:id="idTextField" layoutX="139.0" layoutY="77.0" />
+      <TextField fx:id="nameTextField" layoutX="391.0" layoutY="78.0" />
+      <Label layoutX="99.0" layoutY="122.0" text="Email" textAlignment="RIGHT" />
+      <TextField fx:id="emailTextField" layoutX="139.0" layoutY="117.0" />
+      <Label layoutX="88.0" layoutY="160.0" text="Gender" textAlignment="RIGHT" />
+      <RadioButton fx:id="femaleRadioButton" layoutX="139.0" layoutY="160.0" mnemonicParsing="false" text="Female" />
+      <RadioButton fx:id="maleRadioButton" layoutX="219.0" layoutY="160.0" mnemonicParsing="false" text="Male" />
+      <RadioButton fx:id="otherRadioButton" layoutX="284.0" layoutY="160.0" mnemonicParsing="false" text="Other" />
+      <Label layoutX="315.0" layoutY="123.0" text="Designation" textAlignment="RIGHT" />
+      <ComboBox fx:id="designationComboBox" layoutX="394.0" layoutY="118.0" prefHeight="26.0" prefWidth="158.0" />
+      <Label layoutX="103.0" layoutY="200.0" text="DoB" textAlignment="RIGHT" />
+      <DatePicker fx:id="dobDatePicker" layoutX="140.0" layoutY="196.0" prefHeight="26.0" prefWidth="157.0" />
+      <Label layoutX="359.0" layoutY="200.0" text="DoJ" textAlignment="RIGHT" />
+      <DatePicker fx:id="dojDatePicker" layoutX="392.0" layoutY="195.0" prefHeight="26.0" prefWidth="157.0" />
+      <Label layoutX="323.0" layoutY="237.0" text="Password" textAlignment="RIGHT" />
+      <TextField fx:id="passwordTextField" layoutX="391.0" layoutY="232.0" />
+      <Label layoutX="93.0" layoutY="238.0" text="Salary" textAlignment="RIGHT" />
+      <TextField fx:id="salaryTextField" layoutX="140.0" layoutY="233.0" />
+      <Button layoutX="215.0" layoutY="303.0" mnemonicParsing="false" onAction="#validateAndCreateUserOnAction" prefHeight="32.0" prefWidth="196.0" text="Validate &amp; Create User">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

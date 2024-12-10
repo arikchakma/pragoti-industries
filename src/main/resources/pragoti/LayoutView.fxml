@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pragoti.LayoutViewController">
+<BorderPane fx:id="layoutBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pragoti.controllers.LayoutViewController">
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
@@ -25,34 +25,33 @@
             <menus>
                 <Menu fx:id="userNameAndRoleMenu" mnemonicParsing="false" text="User Name (Role)">
                     <items>
-                        <MenuItem fx:id="createUserMenuItem" mnemonicParsing="false" onAction="#createUserOnAction" text="Create User" />
                         <MenuItem mnemonicParsing="false" onAction="#signOutOnAction" text="Sign Out" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Vehicles">
+                <Menu fx:id="adminMenu" mnemonicParsing="false" text="Admin">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#availableVehiclesOnAction" text="Available Vehicles" />
-                        <MenuItem mnemonicParsing="false" onAction="#scheduleVehicleDispatchOnAction" text="Schedule Vehicle Dispatch" />
-                        <MenuItem mnemonicParsing="false" onAction="#monitorVehicleMovementOnAction" text="Monitor Vehicle Movement" />
-                        <MenuItem mnemonicParsing="false" onAction="#assignDriverOnAction" text="Assign Driver" />
-                        <MenuItem mnemonicParsing="false" onAction="#updateVehicleStatusOnAction" text="Update Vehicle Status" />
-                        <MenuItem mnemonicParsing="false" onAction="#checkAlertsOnAction" text="Check Alerts" />
-                        <MenuItem mnemonicParsing="false" onAction="#generateTransportationOrderDetailsOnAction" text="Generate Transportation Order Details" />
-                        <MenuItem mnemonicParsing="false" onAction="#manageTransportationRequestsOnAction" text="Manage Transportation Requests" />
+                        <MenuItem mnemonicParsing="false" onAction="#createUserOnAction" text="Create User" />
+                        <MenuItem mnemonicParsing="false" onAction="#deleteUserOnAction" text="Delete User" />
+                        <MenuItem mnemonicParsing="false" onAction="#disbaleUserOnAction" text="Disable User" />
+                        <MenuItem mnemonicParsing="false" onAction="#reactiveDisbaledUserOnAction" text="Reactive Disabled User" />
+                        <MenuItem mnemonicParsing="false" onAction="#updateUserOnAction" text="Update User" />
+                        <MenuItem mnemonicParsing="false" onAction="#viewUserActivityOnAction" text="View User Activity" />
+                        <MenuItem mnemonicParsing="false" onAction="#analyzeGenderDistributionOnAction" text="Analyze Gender Distribution" />
+                        <MenuItem mnemonicParsing="false" onAction="#departmentWiseEmployeeDistributionOnAction" text="Department-Wise Employee Distribution" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Inventories">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#viewStocksOnAction" text="View Stocks" />
-                        <MenuItem mnemonicParsing="false" onAction="#newInventoryOnAction" text="New Inventory" />
-                        <MenuItem mnemonicParsing="false" onAction="#updateInventoryRecordOnAction" text="Update Record" />
-                        <MenuItem mnemonicParsing="false" onAction="#stockThresholdOnAction" text="Stock Thresholds" />
-                        <MenuItem mnemonicParsing="false" onAction="#materialRequestsOnAction" text="Material Requests" />
-                        <MenuItem mnemonicParsing="false" onAction="#generateReport" text="Generate Report" />
-                        <MenuItem mnemonicParsing="false" onAction="#generateInventoryReportOnAction" text="Low Inventory Items" />
-                        <MenuItem mnemonicParsing="false" onAction="#supplierOrdersOnAction" text="Supplier Orders" />
-                    </items>
-                </Menu>
+            <Menu fx:id="logisticOfficerMenu" mnemonicParsing="false" text="Logistic Officer">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#availableVehiclesOnAction" text="Available Vehicles" />
+                  <MenuItem mnemonicParsing="false" onAction="#scheduleVehicleDispatchOnAction" text="Schedule Vehicle Dispatch" />
+                  <MenuItem mnemonicParsing="false" onAction="#monitorVehicleMovementOnAction" text="Apply for Leave" />
+                  <MenuItem mnemonicParsing="false" onAction="#assignDriverOnAction" text="Assign Driver" />
+                  <MenuItem mnemonicParsing="false" onAction="#updateVehicleStatusOnAction" text="Update Vehicle Status" />
+                  <MenuItem mnemonicParsing="false" onAction="#checkAlertsOnAction" text="Check Alerts" />
+                  <MenuItem mnemonicParsing="false" onAction="#generateTransportationOrderDetailsOnAction" text="Generate Transportation Order Details" />
+                  <MenuItem mnemonicParsing="false" onAction="#manageTransportationRequestsOnAction" text="Manage Transportation Requests" />
+               </items>
+            </Menu>
             </menus>
         </MenuBar>
     </top>

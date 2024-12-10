@@ -5,4 +5,6 @@ module com.pragoti.pragoti {
 
     opens pragoti to javafx.fxml;
     exports pragoti;
+    exports pragoti.controllers;
+    opens pragoti.controllers to javafx.fxml;
 }
