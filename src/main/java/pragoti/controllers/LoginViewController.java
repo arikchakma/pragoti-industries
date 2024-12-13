@@ -20,7 +20,6 @@ public class LoginViewController {
 
     @javafx.fxml.FXML
     public void initialize() {
-        Admin.checkOrCreateAdmin();
     }
 
     @javafx.fxml.FXML
@@ -67,7 +66,7 @@ public class LoginViewController {
 
             Scene dashboardScene = new Scene(dashboardFxmlLoader.load());
             stage.setScene(dashboardScene);
-            LayoutViewController layoutViewController = dashboardFxmlLoader.getController();
+            LayoutViewController layoutViewController = (LayoutViewController) dashboardFxmlLoader.getController();
             layoutViewController.setCurrentUser(user);
             ActivityLogger.log("Logged in", userId);
         } catch (Exception e) {

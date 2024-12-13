@@ -52,14 +52,13 @@ public class ActivityLogger implements Serializable {
     }
 
     public static void log(String activity, Integer userId) {
-        System.out.println(LocalDateTime.now());
         ActivityLogger activityLogger = new ActivityLogger(activity, LocalDateTime.now(), userId);
         FileHandler.writeObjectToFile(activityLogger, "activity_logs.bin");
     }
 
     public static ArrayList<ActivityLogger> getUserActivityLogs(Integer userId) {
         ArrayList<ActivityLogger> activityLoggers = new ArrayList<ActivityLogger>();
-        ArrayList<ActivityLogger> allActivityLoggers = FileHandler.<ActivityLogger>readObjectFromFile("activity_logs.bin");
+        ArrayList<ActivityLogger> allActivityLoggers = FileHandler.<ActivityLogger>readObjectsFromFile("activity_logs.bin");
         if (allActivityLoggers == null) {
             return activityLoggers;
         }

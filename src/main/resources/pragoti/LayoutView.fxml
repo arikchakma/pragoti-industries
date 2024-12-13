@@ -44,7 +44,7 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#availableVehiclesOnAction" text="Available Vehicles" />
                   <MenuItem mnemonicParsing="false" onAction="#scheduleVehicleDispatchOnAction" text="Schedule Vehicle Dispatch" />
-                  <MenuItem mnemonicParsing="false" onAction="#monitorVehicleMovementOnAction" text="Apply for Leave" />
+                  <MenuItem mnemonicParsing="false" onAction="#applyForLeaveOnAction" text="Apply for Leave" />
                   <MenuItem mnemonicParsing="false" onAction="#assignDriverOnAction" text="Assign Driver" />
                   <MenuItem mnemonicParsing="false" onAction="#updateVehicleStatusOnAction" text="Update Vehicle Status" />
                   <MenuItem mnemonicParsing="false" onAction="#checkAlertsOnAction" text="Check Alerts" />

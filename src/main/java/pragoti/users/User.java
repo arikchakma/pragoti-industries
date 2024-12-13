@@ -156,7 +156,7 @@ public abstract class User implements Serializable {
     }
 
     public static ArrayList<User> getAllUsers() {
-        return FileHandler.<User>readObjectFromFile("users.bin");
+        return FileHandler.<User>readObjectsFromFile("users.bin");
     }
 
     public static User getUser(int id) {

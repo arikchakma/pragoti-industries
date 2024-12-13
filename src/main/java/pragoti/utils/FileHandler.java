@@ -1,12 +1,14 @@
 package pragoti.utils;
 
+import pragoti.shared.LeaveInformation;
+
 import java.io.*;
 import java.util.ArrayList;
 
 public class FileHandler {
     // it will return an array list of objects
     // return a generic array of objects
-    public static <T> ArrayList<T> readObjectFromFile(String fileName) {
+    public static <T> ArrayList<T> readObjectsFromFile(String fileName) {
         FileInputStream fis = null;
         ObjectInputStream ois = null;
 
@@ -37,17 +39,19 @@ public class FileHandler {
                     throw new RuntimeException(ex);
                 }
             }
-            return null;
+
+            e.printStackTrace();
+            return list;
         }
     }
 
     public static boolean deleteFile(String fileName) {
         File file = new File(fileName);
-        if (file.exists()) {
-            return file.delete();
+        if (!file.exists()) {
+            return false;
         }
 
-        return false;
+        return file.delete();
     }
 
     // it will replace the file with the new list
@@ -65,6 +69,7 @@ public class FileHandler {
             oos.close();
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
@@ -88,6 +93,7 @@ public class FileHandler {
             oos.close();
             return true;
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
 

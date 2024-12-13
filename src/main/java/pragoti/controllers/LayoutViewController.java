@@ -41,24 +41,8 @@ public class LayoutViewController {
         }
     }
 
-    @Deprecated
-    public void supplierOrdersOnAction(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void generateInventoryReportOnAction(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void updateInventoryRecordOnAction(ActionEvent actionEvent) {
-    }
-
     @javafx.fxml.FXML
     public void generateTransportationOrderDetailsOnAction(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void newInventoryOnAction(ActionEvent actionEvent) {
     }
 
     @javafx.fxml.FXML
@@ -70,10 +54,6 @@ public class LayoutViewController {
         switchToScene("CreateUserView.fxml");
     }
 
-    @Deprecated
-    public void generateReport(ActionEvent actionEvent) {
-    }
-
     @javafx.fxml.FXML
     public void checkAlertsOnAction(ActionEvent actionEvent) {
     }
@@ -82,28 +62,26 @@ public class LayoutViewController {
     public void assignDriverOnAction(ActionEvent actionEvent) {
     }
 
-    @Deprecated
-    public void stockThresholdOnAction(ActionEvent actionEvent) {
-    }
-
     @javafx.fxml.FXML
     public void manageTransportationRequestsOnAction(ActionEvent actionEvent) {
     }
 
     @javafx.fxml.FXML
-    public void monitorVehicleMovementOnAction(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void materialRequestsOnAction(ActionEvent actionEvent) {
-    }
-
-    @Deprecated
-    public void viewStocksOnAction(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
     public void scheduleVehicleDispatchOnAction(ActionEvent actionEvent) {
+        try {
+            String fxmlFileName = "VehicleDispatchView.fxml";
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    MainApplication.class.getResource(fxmlFileName)
+            );
+
+            ActivityLogger.log("Switched to " + fxmlFileName.replace(".fxml", ""), currentUser.getId());
+
+            layoutBorderPane.setCenter(fxmlLoader.load());
+            DispatchVehicleViewController dispatchVehicleController = fxmlLoader.getController();
+            dispatchVehicleController.setLogisticOfficer((LogisticOfficer) currentUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @javafx.fxml.FXML
@@ -174,4 +152,23 @@ public class LayoutViewController {
             e.printStackTrace();
         }
     }
+
+    @javafx.fxml.FXML
+    public void applyForLeaveOnAction(ActionEvent actionEvent) {
+        try {
+            String fxmlFileName = "ApplyForLeaveView.fxml";
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    MainApplication.class.getResource(fxmlFileName)
+            );
+
+            ActivityLogger.log("Switched to " + fxmlFileName.replace(".fxml", ""), currentUser.getId());
+
+            layoutBorderPane.setCenter(fxmlLoader.load());
+            ApplyForLeaveViewController applyForLeaveViewController = fxmlLoader.getController();
+            applyForLeaveViewController.setLogisticOfficer((LogisticOfficer) currentUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

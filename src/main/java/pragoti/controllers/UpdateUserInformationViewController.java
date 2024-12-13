@@ -40,7 +40,7 @@ public class UpdateUserInformationViewController {
         maleRadioButton.setToggleGroup(genderToggleGroup);
         otherRadioButton.setToggleGroup(genderToggleGroup);
 
-        designationComboBox.getItems().addAll("Admin", "Logistic Officer", "HR", "Customer Support");
+        designationComboBox.getItems().addAll("Admin", "Logistic Officer");
         refreshSelectUserIdComboBox();
     }
 

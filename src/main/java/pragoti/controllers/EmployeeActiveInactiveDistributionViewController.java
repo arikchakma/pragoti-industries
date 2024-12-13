@@ -54,18 +54,6 @@ public class EmployeeActiveInactiveDistributionViewController {
                 } else {
                     logisticOfficerInactive++;
                 }
-            } else if (designation.equals("Customer Support")) {
-                if (status.equals("active")) {
-                    customerSupportActive++;
-                } else {
-                    customerSupportInactive++;
-                }
-            } else if (designation.equals("HR")) {
-                if (status.equals("active")) {
-                    hrActive++;
-                } else {
-                    hrInactive++;
-                }
             }
         }
 
@@ -79,8 +67,6 @@ public class EmployeeActiveInactiveDistributionViewController {
         series.setName(status);
         series.getData().add(new XYChart.Data<String, Integer>("Admin", adminCount));
         series.getData().add(new XYChart.Data<String, Integer>("Logistic Officer", logisticOfficerCount));
-        series.getData().add(new XYChart.Data<String, Integer>("Customer Support", customerSupportCount));
-        series.getData().add(new XYChart.Data<String, Integer>("HR", hrCount));
         return series;
     }
 

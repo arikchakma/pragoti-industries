@@ -40,3 +40,5 @@ build/
 ### Project Binaries ###
 users.bin
 activity_logs.bin
+drivers.bin
+vehicles.bin
