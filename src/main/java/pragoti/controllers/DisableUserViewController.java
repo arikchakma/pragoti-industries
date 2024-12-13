@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class DisableUserViewController {
     @javafx.fxml.FXML
     private ComboBox<String> selectUserComboBox;
+    private Admin admin;
 
     @javafx.fxml.FXML
     public void initialize() {
@@ -28,6 +29,10 @@ public class DisableUserViewController {
         }
     }
 
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
     @javafx.fxml.FXML
     public void disableUserOnAction(ActionEvent actionEvent) {
         String selectedUser = selectUserComboBox.getValue();
@@ -39,8 +44,16 @@ public class DisableUserViewController {
         String[] parts = selectedUser.split(" -- ");
         int id = Integer.parseInt(parts[1]);
 
-        User user = User.getUser(id);
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        if (id == admin.getId()) {
+            alert.setTitle("Error");
+            alert.setHeaderText("Cannot disable yourself");
+            alert.setContentText("You cannot disable yourself");
+            alert.showAndWait();
+            return;
+        }
+
+        User user = User.getUser(id);
         if (user == null) {
             alert.setTitle("Error");
             alert.setHeaderText("User not found");
@@ -50,7 +63,12 @@ public class DisableUserViewController {
         }
 
         user.setStatus("inactive");
-        Admin.updateAndSaveUser(user);
+        if(!Admin.updateAndSaveUser(user)) {
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to disable user");
+            alert.showAndWait();
+            return;
+        }
 
         alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");

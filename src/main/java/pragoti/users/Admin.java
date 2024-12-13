@@ -25,7 +25,7 @@ public class Admin extends User implements Serializable {
         }
 
         System.out.println("Admin does not exist. Creating an admin...");
-        admin = new Admin(1111, "Arik Chakma", "Male", "hello@arikko.dev", "Admin", LocalDate.of(2003, 11, 21), LocalDate.now(), "admin", 100000);
+        admin = new Admin(1111, "Arik Chakma", "Male", "hello@arikko.dev", "Admin", LocalDate.of(2003, 11, 21), LocalDate.now(), "admin@17", 100000);
         saveUser(admin);
     }
 

@@ -18,8 +18,6 @@ public class UpdateUserInformationViewController {
     @javafx.fxml.FXML
     private RadioButton otherRadioButton;
     @javafx.fxml.FXML
-    private ComboBox<String> designationComboBox;
-    @javafx.fxml.FXML
     private DatePicker dojDatePicker;
     @javafx.fxml.FXML
     private RadioButton femaleRadioButton;
@@ -33,6 +31,8 @@ public class UpdateUserInformationViewController {
     private DatePicker dobDatePicker;
 
     ToggleGroup genderToggleGroup = new ToggleGroup();
+    @javafx.fxml.FXML
+    private Label designationLabel;
 
     @javafx.fxml.FXML
     public void initialize() {
@@ -40,7 +40,8 @@ public class UpdateUserInformationViewController {
         maleRadioButton.setToggleGroup(genderToggleGroup);
         otherRadioButton.setToggleGroup(genderToggleGroup);
 
-        designationComboBox.getItems().addAll("Admin", "Logistic Officer");
+        designationLabel.setText("User");
+
         refreshSelectUserIdComboBox();
     }
 
@@ -63,12 +64,11 @@ public class UpdateUserInformationViewController {
         String name = nameTextField.getText();
         String email = emailTextField.getText();
         String password = passwordTextField.getText();
-        String designation = designationComboBox.getValue();
         LocalDate dob = dobDatePicker.getValue();
         LocalDate doj = dojDatePicker.getValue();
 
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        if (name.isEmpty() || email.isEmpty() || password.isEmpty() || designation == null) {
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
             alert.setTitle("Error");
             alert.setHeaderText("All fields are required");
             alert.showAndWait();
@@ -117,13 +117,17 @@ public class UpdateUserInformationViewController {
         user.setName(name);
         user.setEmail(email);
         user.setPassword(password);
-        user.setDesignation(designation);
         user.setSalary(salary);
         user.setDob(dob);
         user.setDoj(doj);
         user.setGender(gender);
 
-        Admin.updateAndSaveUser(user);
+        if(!Admin.updateAndSaveUser(user)) {
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to update user information");
+            alert.showAndWait();
+            return;
+        }
         refreshSelectUserIdComboBox();
 
         alert.setAlertType(Alert.AlertType.INFORMATION);
@@ -179,7 +183,7 @@ public class UpdateUserInformationViewController {
         nameTextField.setText(user.getName());
         emailTextField.setText(user.getEmail());
         passwordTextField.setText(user.getPassword());
-        designationComboBox.setValue(user.getDesignation());
+        designationLabel.setText(user.getDesignation());
         salaryTextField.setText(String.valueOf(user.getSalary()));
         dobDatePicker.setValue(user.getDob());
         dojDatePicker.setValue(user.getDoj());

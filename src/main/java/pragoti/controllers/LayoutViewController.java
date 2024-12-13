@@ -98,7 +98,20 @@ public class LayoutViewController {
 
     @javafx.fxml.FXML
     public void deleteUserOnAction(ActionEvent actionEvent) {
-        switchToScene("DeleteUserView.fxml");
+        try {
+            String fxmlFileName = "DeleteUserView.fxml";
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    MainApplication.class.getResource(fxmlFileName)
+            );
+
+            ActivityLogger.log("Switched to " + fxmlFileName.replace(".fxml", ""), currentUser.getId());
+
+            layoutBorderPane.setCenter(fxmlLoader.load());
+            DeleteUserViewController controller = fxmlLoader.getController();
+            controller.setAdmin((Admin) currentUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @javafx.fxml.FXML
@@ -113,8 +126,23 @@ public class LayoutViewController {
 
     @javafx.fxml.FXML
     public void disableUserOnAction(ActionEvent actionEvent) {
-        switchToScene("DisableUserView.fxml");
+//        switchToScene("DisableUserView.fxml");
+        try {
+            String fxmlFileName = "DisableUserView.fxml";
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    MainApplication.class.getResource(fxmlFileName)
+            );
+
+            ActivityLogger.log("Switched to " + fxmlFileName.replace(".fxml", ""), currentUser.getId());
+
+            layoutBorderPane.setCenter(fxmlLoader.load());
+            DisableUserViewController controller = fxmlLoader.getController();
+            controller.setAdmin((Admin) currentUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
 
     protected void switchToScene(String fxmlFileName) {
         try {

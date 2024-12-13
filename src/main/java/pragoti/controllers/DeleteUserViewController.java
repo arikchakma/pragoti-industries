@@ -8,14 +8,19 @@ import pragoti.users.User;
 
 import java.util.ArrayList;
 
-public class DeleteUserViewController
-{
+public class DeleteUserViewController {
     @javafx.fxml.FXML
     private ComboBox<String> selectUserComboBox;
+
+    private Admin admin;
 
     @javafx.fxml.FXML
     public void initialize() {
         refreshSelectUserComboBox();
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
     }
 
     @javafx.fxml.FXML
@@ -24,10 +29,26 @@ public class DeleteUserViewController
         String[] parts = selectedUser.split(" -- ");
         int id = Integer.parseInt(parts[1]);
 
-        Admin.deleteUser(id);
+        if (id == admin.getId()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Cannot delete yourself");
+            alert.setContentText("You cannot delete yourself");
+            alert.showAndWait();
+            return;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        if (!Admin.deleteUser(id)) {
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to delete user");
+            alert.showAndWait();
+            return;
+        }
+
         refreshSelectUserComboBox();
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
         alert.setHeaderText("User deleted");
         alert.setContentText("User with id: " + id + " has been deleted");

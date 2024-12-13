@@ -33,7 +33,13 @@ public class ReactiveUserViewController {
         }
 
         user.setStatus("active");
-        Admin.updateAndSaveUser(user);
+        if (!Admin.updateAndSaveUser(user)) {
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to reactivate user");
+            alert.setContentText("Failed to reactivate user with id " + id);
+            alert.showAndWait();
+            return;
+        }
         refreshSelectUserComboBox();
 
         alert.setAlertType(Alert.AlertType.INFORMATION);

@@ -77,6 +77,13 @@ public class CreateUserViewController {
         }
 
         int id = Integer.parseInt(idString);
+        if (User.isUserExist(id)) {
+            alert.setTitle("Error");
+            alert.setHeaderText("User with this ID already exists");
+            alert.showAndWait();
+            return;
+        }
+
         float salary = Float.parseFloat(salaryTextField.getText());
         if (salary < 10 * 1000) {
             alert.setTitle("Error");
@@ -99,6 +106,7 @@ public class CreateUserViewController {
             return;
         }
 
+
         boolean isValidPassword = User.validatePassword(password);
         if (!isValidPassword) {
             alert.setTitle("Error");
@@ -107,16 +115,9 @@ public class CreateUserViewController {
             return;
         }
 
-        if(User.isUserExist(id)) {
-            alert.setTitle("Error");
-            alert.setHeaderText("User with this ID already exists");
-            alert.showAndWait();
-            return;
-        }
-
         String gender = ((RadioButton) genderToggleGroup.getSelectedToggle()).getText();
         User user = Admin.createAndSaveUser(id, name, gender, email, designation, dob, doj, password, salary);
-        if(user == null) {
+        if (user == null) {
             alert.setTitle("Error");
             alert.setHeaderText("Invalid Designation");
             alert.showAndWait();
