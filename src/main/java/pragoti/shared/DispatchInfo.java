@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class DispatchInfo implements Serializable {
     private int id, vehicleId, driverId, dispatcherUserId;
+    // Status can be: Scheduled, Dispatched, Delivered, Cancelled
     private String destination, status;
     private LocalDate dispatchDate, estimatedArrivalDate;
     private String priority, remarks;
@@ -129,6 +130,21 @@ public class DispatchInfo implements Serializable {
         return FileHandler.<DispatchInfo>readObjectsFromFile("dispatch_info.bin");
     }
 
+    public static DispatchInfo getDispatchInfo(int id) {
+        ArrayList<DispatchInfo> dispatchList = getAllDispatchInfo();
+        if (dispatchList == null) {
+            return null;
+        }
+
+        for (DispatchInfo dispatch : dispatchList) {
+            if (dispatch.getId() == id) {
+                return dispatch;
+            }
+        }
+
+        return null;
+    }
+
     public static int getNextId() {
         ArrayList<DispatchInfo> dispatchList = getAllDispatchInfo();
         int maxId = 1000;
@@ -151,5 +167,32 @@ public class DispatchInfo implements Serializable {
 
     public static boolean saveDispatchInfo(DispatchInfo di) {
         return FileHandler.writeObjectToFile(di, "dispatch_info.bin");
+    }
+
+    public boolean updateAndSaveToFile() {
+        return updateDispatchInfo(this);
+    }
+
+    public static boolean updateDispatchInfo(DispatchInfo di) {
+        ArrayList<DispatchInfo> dispatchList = getAllDispatchInfo();
+        if (dispatchList == null) {
+            return false;
+        }
+
+       int index = -1;
+        for (int i = 0; i < dispatchList.size(); i++) {
+            if (dispatchList.get(i).getId() == di.getId()) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index == -1) {
+            return false;
+        }
+
+        dispatchList.set(index, di);
+        FileHandler.deleteFile("dispatch_info.bin");
+        return FileHandler.replaceFile(dispatchList, "dispatch_info.bin");
     }
 }

@@ -42,28 +42,8 @@ public class LayoutViewController {
     }
 
     @javafx.fxml.FXML
-    public void generateTransportationOrderDetailsOnAction(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
-    public void updateVehicleStatusOnAction(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
     public void createUserOnAction(ActionEvent actionEvent) {
         switchToScene("CreateUserView.fxml");
-    }
-
-    @javafx.fxml.FXML
-    public void checkAlertsOnAction(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
-    public void assignDriverOnAction(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
-    public void manageTransportationRequestsOnAction(ActionEvent actionEvent) {
     }
 
     @javafx.fxml.FXML
@@ -82,10 +62,6 @@ public class LayoutViewController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    @javafx.fxml.FXML
-    public void availableVehiclesOnAction(ActionEvent actionEvent) {
     }
 
     @javafx.fxml.FXML
@@ -171,4 +147,72 @@ public class LayoutViewController {
         }
     }
 
+    @javafx.fxml.FXML
+    public void updateDispatchInfoOnAction(ActionEvent actionEvent) {
+        try {
+            String fxmlFileName = "UpdateDispatchVehicleInfoView.fxml";
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    MainApplication.class.getResource(fxmlFileName)
+            );
+
+            ActivityLogger.log("Switched to " + fxmlFileName.replace(".fxml", ""), currentUser.getId());
+
+            layoutBorderPane.setCenter(fxmlLoader.load());
+            UpdateDispatchVehicleInfoViewController controller = fxmlLoader.getController();
+            controller.setLogisticOfficer((LogisticOfficer) currentUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @javafx.fxml.FXML
+    public void vehicleStatusDistributionOnAction(ActionEvent actionEvent) {
+        switchToScene("VehicleDistributionView.fxml");
+    }
+
+    @javafx.fxml.FXML
+    public void cancelVehicleDispatchOnAction(ActionEvent actionEvent) {
+        switchToScene("CancelVehicleDispatchView.fxml");
+    }
+
+    @javafx.fxml.FXML
+    public void deleteDriverOnAction(ActionEvent actionEvent) {
+        try {
+            String fxmlFileName = "DeleteDriverView.fxml";
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    MainApplication.class.getResource(fxmlFileName)
+            );
+
+            ActivityLogger.log("Switched to " + fxmlFileName.replace(".fxml", ""), currentUser.getId());
+
+            layoutBorderPane.setCenter(fxmlLoader.load());
+            DeleteDriverViewController controller = fxmlLoader.getController();
+            controller.setLogisticOfficer((LogisticOfficer) currentUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @javafx.fxml.FXML
+    public void driverDispatchDistributionOnAction(ActionEvent actionEvent) {
+        switchToScene("DriverDispatchDistributionView.fxml");
+    }
+
+    @javafx.fxml.FXML
+    public void updatePasswordOnAction(ActionEvent actionEvent) {
+        try {
+            String fxmlFileName = "UpdatePasswordView.fxml";
+            FXMLLoader fxmlLoader = new FXMLLoader(
+                    MainApplication.class.getResource(fxmlFileName)
+            );
+
+            ActivityLogger.log("Switched to " + fxmlFileName.replace(".fxml", ""), currentUser.getId());
+
+            layoutBorderPane.setCenter(fxmlLoader.load());
+            UpdatePasswordViewController controller = fxmlLoader.getController();
+            controller.setLogisticOfficer((LogisticOfficer) currentUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

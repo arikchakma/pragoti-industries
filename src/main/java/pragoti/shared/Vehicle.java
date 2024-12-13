@@ -76,35 +76,109 @@ public class Vehicle implements Serializable {
     public static void generateVehiclesData() {
         String[] mitsubishiModels = {
                 "Mitsubishi Pajero V-31",
+                "Mitsubishi Pajero V-31",
+                "Mitsubishi Pajero V-31",
+                "Mitsubishi Pajero V-31",
+                "Mitsubishi Pajero V-31",
                 "Mitsubishi Pajero Sport CR-45",
-                "Mitsubishi L-200 Double-Cabin Pickup"
+                "Mitsubishi Pajero Sport CR-45",
+                "Mitsubishi Pajero Sport CR-45",
+                "Mitsubishi Pajero Sport CR-45",
+                "Mitsubishi Pajero Sport CR-45",
+                "Mitsubishi Pajero Sport CR-45",
+                "Mitsubishi L-200 Double-Cabin Pickup",
+                "Mitsubishi L-200 Double-Cabin Pickup",
+                "Mitsubishi L-200 Double-Cabin Pickup",
+                "Mitsubishi L-200 Double-Cabin Pickup",
+                "Mitsubishi L-200 Double-Cabin Pickup",
+                "Mitsubishi L-200 Double-Cabin Pickup",
+                "Mitsubishi L-200 Double-Cabin Pickup",
+                "Mitsubishi L-200 Double-Cabin Pickup",
         };
 
         // Mahindra & Mahindra
         String[] mahindraModels = {
                 "Mahindra Scorpio S10 SUV",
-                "Mahindra Scorpio Double Cab Pickup"
+                "Mahindra Scorpio S10 SUV",
+                "Mahindra Scorpio S10 SUV",
+                "Mahindra Scorpio S10 SUV",
+                "Mahindra Scorpio S10 SUV",
+                "Mahindra Scorpio S10 SUV",
+                "Mahindra Scorpio S10 SUV",
+                "Mahindra Scorpio S10 SUV",
+                "Mahindra Scorpio S10 SUV",
+                "Mahindra Scorpio Double Cab Pickup",
+                "Mahindra Scorpio Double Cab Pickup",
+                "Mahindra Scorpio Double Cab Pickup",
+                "Mahindra Scorpio Double Cab Pickup",
+                "Mahindra Scorpio Double Cab Pickup",
+                "Mahindra Scorpio Double Cab Pickup",
+                "Mahindra Scorpio Double Cab Pickup",
+                "Mahindra Scorpio Double Cab Pickup",
         };
 
         // Tata Motors
         String[] tataModels = {
                 "Tata Buses",
-                "Tata Mini Trucks"
+                "Tata Buses",
+                "Tata Buses",
+                "Tata Buses",
+                "Tata Buses",
+                "Tata Buses",
+                "Tata Buses",
+                "Tata Buses",
+                "Tata Buses",
+                "Tata Mini Trucks",
+                "Tata Mini Trucks",
+                "Tata Mini Trucks",
+                "Tata Mini Trucks",
+                "Tata Mini Trucks",
+                "Tata Mini Trucks",
+                "Tata Mini Trucks",
+                "Tata Mini Trucks",
         };
 
         // Ashok Leyland
         String[] ashokLeylandModels = {
-                "Ashok Leyland Minibuses"
+                "Ashok Leyland Minibuses",
+                "Ashok Leyland Minibuses",
+                "Ashok Leyland Minibuses",
+                "Ashok Leyland Minibuses",
+                "Ashok Leyland Minibuses",
+                "Ashok Leyland Minibuses",
+                "Ashok Leyland Minibuses",
+                "Ashok Leyland Minibuses",
+                "Ashok Leyland Minibuses",
+                "Ashok Leyland Minibuses",
+                "Ashok Leyland Minibuses",
         };
 
         // Vauxhall
         String[] vauxhallModels = {
-                "Vauxhall Viva"
+                "Vauxhall Viva",
+                "Vauxhall Viva",
+                "Vauxhall Viva",
+                "Vauxhall Viva",
+                "Vauxhall Viva",
+                "Vauxhall Viva",
+                "Vauxhall Viva",
+                "Vauxhall Viva",
+                "Vauxhall Viva",
+                "Vauxhall Viva",
         };
 
         // Bedford
         String[] bedfordModels = {
-                "Bedford Trucks"
+                "Bedford Trucks",
+                "Bedford Trucks",
+                "Bedford Trucks",
+                "Bedford Trucks",
+                "Bedford Trucks",
+                "Bedford Trucks",
+                "Bedford Trucks",
+                "Bedford Trucks",
+                "Bedford Trucks",
+                "Bedford Trucks",
         };
 
         ArrayList<Vehicle> vehicles = getAllVehicles();
@@ -145,5 +219,47 @@ public class Vehicle implements Serializable {
 
     public static ArrayList<Vehicle> getAllVehicles() {
         return FileHandler.<Vehicle>readObjectsFromFile("vehicles.bin");
+    }
+
+    public static Vehicle getVehicle(int id) {
+        ArrayList<Vehicle> vehicles = getAllVehicles();
+        if (vehicles == null || vehicles.isEmpty()) {
+            return null;
+        }
+
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle.getId() == id) {
+                return vehicle;
+            }
+        }
+
+        return null;
+    }
+
+    public boolean updateAndSaveVehicle() {
+        return updateVehicle(this);
+    }
+
+    public static boolean updateVehicle(Vehicle vehicle) {
+        ArrayList<Vehicle> vehicles = getAllVehicles();
+        if (vehicles == null || vehicles.isEmpty()) {
+            return false;
+        }
+
+        int indexOfVehicle = -1;
+        for (int i = 0; i < vehicles.size(); i++) {
+            if (vehicles.get(i).getId() == vehicle.getId()) {
+                indexOfVehicle = i;
+                break;
+            }
+        }
+
+        if (indexOfVehicle == -1) {
+            return false;
+        }
+
+        vehicles.set(indexOfVehicle, vehicle);
+        FileHandler.deleteFile("vehicles.bin");
+        return FileHandler.<Vehicle>replaceFile(vehicles, "vehicles.bin");
     }
 }

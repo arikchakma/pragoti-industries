@@ -42,14 +42,14 @@
                 </Menu>
             <Menu fx:id="logisticOfficerMenu" mnemonicParsing="false" text="Logistic Officer">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#availableVehiclesOnAction" text="Available Vehicles" />
-                  <MenuItem mnemonicParsing="false" onAction="#scheduleVehicleDispatchOnAction" text="Schedule Vehicle Dispatch" />
+                  <MenuItem mnemonicParsing="false" onAction="#updatePasswordOnAction" text="Update Password" />
                   <MenuItem mnemonicParsing="false" onAction="#applyForLeaveOnAction" text="Apply for Leave" />
-                  <MenuItem mnemonicParsing="false" onAction="#assignDriverOnAction" text="Assign Driver" />
-                  <MenuItem mnemonicParsing="false" onAction="#updateVehicleStatusOnAction" text="Update Vehicle Status" />
-                  <MenuItem mnemonicParsing="false" onAction="#checkAlertsOnAction" text="Check Alerts" />
-                  <MenuItem mnemonicParsing="false" onAction="#generateTransportationOrderDetailsOnAction" text="Generate Transportation Order Details" />
-                  <MenuItem mnemonicParsing="false" onAction="#manageTransportationRequestsOnAction" text="Manage Transportation Requests" />
+                  <MenuItem mnemonicParsing="false" onAction="#scheduleVehicleDispatchOnAction" text="Schedule Vehicle Dispatch" />
+                  <MenuItem mnemonicParsing="false" onAction="#updateDispatchInfoOnAction" text="Update Dispatch Info" />
+                  <MenuItem mnemonicParsing="false" onAction="#vehicleStatusDistributionOnAction" text="Vehicle Status Distribution by Model" />
+                  <MenuItem mnemonicParsing="false" onAction="#cancelVehicleDispatchOnAction" text="Cancle Vehicle Dispatch" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteDriverOnAction" text="Delete Driver" />
+                  <MenuItem mnemonicParsing="false" onAction="#driverDispatchDistributionOnAction" text="Driver Dispatch Distribution" />
                </items>
             </Menu>
             </menus>

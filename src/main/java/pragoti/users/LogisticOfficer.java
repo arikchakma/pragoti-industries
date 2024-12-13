@@ -1,9 +1,9 @@
 package pragoti.users;
 
-import pragoti.shared.DispatchInfo;
-import pragoti.shared.LeaveInformation;
-import pragoti.shared.ValidationError;
+import pragoti.shared.*;
+import pragoti.utils.FileHandler;
 
+import java.io.File;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,10 +16,10 @@ public class LogisticOfficer extends User implements Serializable {
         super(id, name, gender, email, designation, dob, doj, password, salary);
     }
 
-    public boolean applyForLeave(String reason, String type, LocalDate startDate, LocalDate endDate, String attachment){
+    public boolean applyForLeave(String reason, String type, LocalDate startDate, LocalDate endDate, String attachment) {
         int leaveId = LeaveInformation.getNextId();
         LeaveInformation leaveInformation = new LeaveInformation(leaveId, this.getId(), reason, "Pending", type, startDate, endDate, LocalDate.now(), attachment);
-        if(!leaveInformation.saveToFile()) {
+        if (!leaveInformation.saveToFile()) {
             System.out.println("Failed to save leave information to file");
             return false;
         }
@@ -35,17 +35,17 @@ public class LogisticOfficer extends User implements Serializable {
         ArrayList<LeaveInformation> leaveInformationArrayList = LeaveInformation.getAllLeaveInfo();
 
         int leaveCount = 0;
-        for(LeaveInformation leaveInformation : leaveInformationArrayList) {
-            if(leaveInformation.getUserId() == this.getId()) {
-                if(leaveInformation.getStatus().equals("Pending")) {
+        for (LeaveInformation leaveInformation : leaveInformationArrayList) {
+            if (leaveInformation.getUserId() == this.getId()) {
+                if (leaveInformation.getStatus().equals("Pending")) {
                     throw new ValidationError("You can't apply for leave because you already have a pending leave");
                 }
-                if(leaveInformation.getStartDate().isBefore(startDate) && leaveInformation.getEndDate().isAfter(startDate)) {
+                if (leaveInformation.getStartDate().isBefore(startDate) && leaveInformation.getEndDate().isAfter(startDate)) {
                     throw new ValidationError("You can't apply for leave because you are already on leave for the same date");
                 }
 
 
-                if(leaveInformation.getStatus().equals("Approved")) {
+                if (leaveInformation.getStatus().equals("Approved")) {
                     // +1 because the leave count should include the start date
                     leaveCount += leaveInformation.getEndDate().getDayOfYear() - leaveInformation.getStartDate().getDayOfYear() + 1;
                 }
@@ -71,12 +71,60 @@ public class LogisticOfficer extends User implements Serializable {
                 throw new ValidationError("Driver is already assigned to a vehicle");
             }
         }
-
-
     }
 
     public boolean dispatchVehicle(int vehicleId, int driverId, String priority, String destination, LocalDate dispatchDate, LocalDate arrivalDate, String status, String remarks) {
         DispatchInfo di = new DispatchInfo(DispatchInfo.getNextId(), vehicleId, driverId, this.getId(), destination, status, dispatchDate, arrivalDate, priority, remarks);
+        Vehicle vehicle = Vehicle.getVehicle(vehicleId);
+        if (vehicle == null) {
+            System.out.println("Vehicle not found");
+            return false;
+        }
+
+        vehicle.setStatus(status);
+        vehicle.updateAndSaveVehicle();
         return di.saveToFile();
+    }
+
+    public boolean deleteDriver(int driverId) throws ValidationError {
+        ArrayList<DispatchInfo> dispatchInfos = DispatchInfo.getAllDispatchInfo();
+        for (DispatchInfo di : dispatchInfos) {
+            if (di.getDriverId() == driverId) {
+                throw new ValidationError("Driver is already assigned to a vehicle");
+            }
+        }
+
+        return Driver.deleteDriver(driverId);
+    }
+
+    public void validateUpdatePassword(String oldPassword, String newPassword) throws ValidationError {
+        if (!this.getPassword().equals(oldPassword)) {
+            throw new ValidationError("Old password is incorrect");
+        }
+
+        if(!User.validatePassword(newPassword)) {
+            throw new ValidationError("Password must contain at least one digit, and one special character");
+        }
+    }
+
+    public boolean updatePassword(String newPassword) {
+        this.setPassword(newPassword);
+
+        ArrayList<User> users = User.getAllUsers();
+        int index = -1;
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId() == this.getId()) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index == -1) {
+            return false;
+        }
+
+        users.set(index, this);
+        FileHandler.deleteFile("users.bin");
+        return FileHandler.replaceFile(users, "users.bin");
     }
 }

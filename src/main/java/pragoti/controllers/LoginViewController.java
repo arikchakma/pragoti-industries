@@ -37,10 +37,11 @@ public class LoginViewController {
         int userId = Integer.parseInt(userIdText);
 
         String password = passwordTextField.getText();
-        if (password.length() < 5) {
+
+        if(!User.validatePassword(password)){
             alert.setTitle("Error");
             alert.setHeaderText("Incorrect password");
-            alert.setContentText("Password must be at least 5 characters");
+            alert.setContentText("Password must be at least 8 characters long and contain at least one digit, and one special character");
             alert.showAndWait();
             return;
         }

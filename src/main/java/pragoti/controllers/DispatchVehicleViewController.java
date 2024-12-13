@@ -64,7 +64,7 @@ public class DispatchVehicleViewController {
         LocalDate arrivalDate = arrivalDatePicker.getValue();
 
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        if (priority.isEmpty() || driver.isEmpty() || status.isEmpty() || vehicle.isEmpty() || remarks.isEmpty() || destination.isEmpty() || logisticOfficer == null || dispatchDate == null || arrivalDate == null) {
+        if (priority.isEmpty() || driver.isEmpty() || status.isEmpty() || vehicle.isEmpty() || destination.isEmpty() || logisticOfficer == null || dispatchDate == null || arrivalDate == null) {
             alert.setTitle("Error");
             alert.setHeaderText("All fields are required");
             alert.showAndWait();
@@ -99,10 +99,18 @@ public class DispatchVehicleViewController {
             return;
         }
 
+        destinationField.clear();
+        statusComboBox.setValue(null);
+        dispatchDatePicker.setValue(null);
+        arrivalDatePicker.setValue(null);
+        priorityComboBox.setValue(null);
+        remarksTextArea.clear();
+
         alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.setTitle("Success");
         alert.setHeaderText("Vehicle dispatched successfully");
         alert.showAndWait();
+
     }
 
     public void setLogisticOfficer(LogisticOfficer logisticOfficer) {

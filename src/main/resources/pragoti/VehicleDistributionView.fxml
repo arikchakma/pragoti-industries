@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pragoti.controllers.VehicleDistributionViewController">
+   <children>
+      <BarChart fx:id="statusDistributionBarChart" layoutX="17.0" layoutY="25.0" prefHeight="302.0" prefWidth="558.0" style="-fx-background-color: #e5e7eb;">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <Label layoutX="17.0" layoutY="346.0" text="Select Brand" />
+      <ComboBox fx:id="selectBrandComboBox" layoutX="97.0" layoutY="342.0" prefWidth="150.0" />
+      <Button layoutX="263.0" layoutY="343.0" mnemonicParsing="false" onAction="#checkStatusDistributionOnAction" text="Check Status Distribution" />
+   </children>
+</AnchorPane>

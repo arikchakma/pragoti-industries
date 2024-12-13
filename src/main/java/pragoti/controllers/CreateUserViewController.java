@@ -99,11 +99,10 @@ public class CreateUserViewController {
             return;
         }
 
-        // password must be at least 5 characters long
-        // TODO: add more password validation rules
-        if (password.length() < 5) {
+        boolean isValidPassword = User.validatePassword(password);
+        if (!isValidPassword) {
             alert.setTitle("Error");
-            alert.setHeaderText("Password must be at least 5 characters long");
+            alert.setHeaderText("Password must be at least 8 characters long and contain at least one digit, and one special character");
             alert.showAndWait();
             return;
         }

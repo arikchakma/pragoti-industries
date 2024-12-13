@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pragoti.controllers.DriverDispatchDistributionViewController">
+    <children>
+        <Label layoutX="17.0" layoutY="346.0" text="Select Driver" />
+        <ComboBox fx:id="selectDriverComboBox" layoutX="97.0" layoutY="342.0" prefWidth="150.0" />
+        <Button layoutX="263.0" layoutY="343.0" mnemonicParsing="false" onAction="#checkStatusDistributionOnAction" text="Check Status Distribution" />
+      <PieChart fx:id="driverDistributionPieChart" layoutX="35.0" layoutY="25.0" prefHeight="302.0" prefWidth="531.0" style="-fx-background-color: #e5e7eb;" />
+    </children>
+</AnchorPane>

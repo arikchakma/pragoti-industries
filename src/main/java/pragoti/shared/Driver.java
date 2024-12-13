@@ -99,6 +99,44 @@ public class Driver implements Serializable {
         return FileHandler.<Driver>readObjectsFromFile("drivers.bin");
     }
 
+    public static Driver getDriver(int id) {
+        ArrayList<Driver> drivers = getAllDrivers();
+        if (drivers == null) {
+            return null;
+        }
+
+        for (Driver driver : drivers) {
+            if (driver.getId() == id) {
+                return driver;
+            }
+        }
+
+        return null;
+    }
+
+    public static boolean deleteDriver(int id) {
+        ArrayList<Driver> drivers = getAllDrivers();
+        if (drivers == null) {
+            return false;
+        }
+
+        drivers.removeIf(driver -> driver.getId() == id);
+        FileHandler.deleteFile("drivers.bin");
+        return FileHandler.<Driver>replaceFile(drivers, "drivers.bin");
+    }
+
+    public ArrayList<DispatchInfo> getDriverDispatchInfo() {
+        ArrayList<DispatchInfo> dispatchInfos = DispatchInfo.getAllDispatchInfo();
+        ArrayList<DispatchInfo> driverDispatchInfo = new ArrayList<>();
+        for (DispatchInfo dispatchInfo : dispatchInfos) {
+            if (dispatchInfo.getDriverId() == this.id) {
+                driverDispatchInfo.add(dispatchInfo);
+            }
+        }
+
+        return driverDispatchInfo;
+    }
+
     public static void generateDriversData() {
         if (!getAllDrivers().isEmpty()) {
             System.out.println("Drivers data already exists.");

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class EmployeeActiveInactiveDistributionViewController {
 
     @javafx.fxml.FXML
-    private BarChart<String, Integer> employeeActiveInactiveBarChart;
+    private BarChart<String, Number> employeeActiveInactiveBarChart;
 
     @javafx.fxml.FXML
     public void initialize() {
@@ -62,11 +62,11 @@ public class EmployeeActiveInactiveDistributionViewController {
         employeeActiveInactiveBarChart.getData().add(getStatusSeries("Inactive", adminInactive, logisticOfficerInactive, customerSupportInactive, hrInactive));
     }
 
-    private XYChart.Series<String, Integer> getStatusSeries(String status, int adminCount, int logisticOfficerCount, int customerSupportCount, int hrCount) {
-        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+    private XYChart.Series<String, Number> getStatusSeries(String status, int adminCount, int logisticOfficerCount, int customerSupportCount, int hrCount) {
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName(status);
-        series.getData().add(new XYChart.Data<String, Integer>("Admin", adminCount));
-        series.getData().add(new XYChart.Data<String, Integer>("Logistic Officer", logisticOfficerCount));
+        series.getData().add(new XYChart.Data<String, Number>("Admin", adminCount));
+        series.getData().add(new XYChart.Data<String, Number>("Logistic Officer", logisticOfficerCount));
         return series;
     }
 
