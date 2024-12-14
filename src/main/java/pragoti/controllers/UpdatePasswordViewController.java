@@ -42,7 +42,11 @@ public class UpdatePasswordViewController
             return;
         }
 
-        logisticOfficer.updatePassword(newPassword);
+        if(!logisticOfficer.updatePassword(newPassword)) {
+            alert.setContentText("Failed to update password");
+            alert.showAndWait();
+            return;
+        }
         alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.setContentText("Password updated successfully");
         alert.showAndWait();

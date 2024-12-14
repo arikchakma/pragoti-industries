@@ -191,6 +191,16 @@ public class DispatchInfo implements Serializable {
             return false;
         }
 
+        Vehicle vehicle = Vehicle.getVehicle(di.getVehicleId());
+        if (vehicle == null) {
+            return false;
+        }
+
+        vehicle.setStatus(di.getStatus());
+        if (!Vehicle.updateVehicle(vehicle)) {
+            return false;
+        }
+
         dispatchList.set(index, di);
         FileHandler.deleteFile("dispatch_info.bin");
         return FileHandler.replaceFile(dispatchList, "dispatch_info.bin");

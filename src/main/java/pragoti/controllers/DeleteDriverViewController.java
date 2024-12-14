@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import pragoti.shared.Driver;
+import pragoti.shared.ValidationError;
 import pragoti.users.LogisticOfficer;
 
 import java.util.ArrayList;
@@ -40,8 +41,8 @@ public class DeleteDriverViewController {
 
         try {
             logisticOfficer.deleteDriver(driver.getId());
-        } catch (Exception e) {
-            alert.setContentText("Driver not found");
+        } catch (ValidationError e) {
+            alert.setContentText(e.getMessage());
             alert.showAndWait();
             return;
         }

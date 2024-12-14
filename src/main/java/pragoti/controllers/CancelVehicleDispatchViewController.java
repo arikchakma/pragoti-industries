@@ -35,7 +35,13 @@ public class CancelVehicleDispatchViewController
         }
 
         dispatchInfo.setStatus("Cancelled");
-        dispatchInfo.updateAndSaveToFile();
+        if(!dispatchInfo.updateAndSaveToFile()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Failed to cancel dispatch");
+            alert.showAndWait();
+            return;
+        }
+
         selectDispatchComboBox.getItems().clear();
         refreshComboBox();
 

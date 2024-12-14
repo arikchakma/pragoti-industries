@@ -98,13 +98,14 @@ public class LogisticOfficer extends User implements Serializable {
     }
 
     public void validateUpdatePassword(String oldPassword, String newPassword) throws ValidationError {
+        if(!User.validatePassword(newPassword)) {
+            throw new ValidationError("Password must contain at least one digit, and one special character");
+        }
+
         if (!this.getPassword().equals(oldPassword)) {
             throw new ValidationError("Old password is incorrect");
         }
 
-        if(!User.validatePassword(newPassword)) {
-            throw new ValidationError("Password must contain at least one digit, and one special character");
-        }
     }
 
     public boolean updatePassword(String newPassword) {
