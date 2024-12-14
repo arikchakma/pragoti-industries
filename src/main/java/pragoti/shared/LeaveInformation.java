@@ -7,12 +7,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class LeaveInformation implements Serializable {
-    private int id, userId;
+    protected int id, userId;
     // status: pending, approved, rejected
     // type: casual, medical, maternity, paternity, earned
-    private String reason, status, type;
-    private LocalDate startDate, endDate, applyDate;
-    private String attachment;
+    protected String reason, status, type;
+    protected LocalDate startDate, endDate, applyDate;
+    protected String attachment;
 
     public static final int MAX_LEAVE_DAYS = 10;
 

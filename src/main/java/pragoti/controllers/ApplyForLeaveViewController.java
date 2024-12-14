@@ -74,6 +74,12 @@ public class ApplyForLeaveViewController {
         alert.setHeaderText(null);
         alert.setContentText("Leave applied successfully");
         alert.showAndWait();
+
+        startDatePicker.setValue(null);
+        endDatePicker.setValue(null);
+        typeComboBox.setValue(null);
+        reasonTextArea.clear();
+        selectFileButton.setText("Select File");
     }
 
     public void setLogisticOfficer(LogisticOfficer logisticOfficer) {

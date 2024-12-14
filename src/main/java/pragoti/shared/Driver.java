@@ -7,10 +7,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Driver implements Serializable {
-    private int id;
-    private String name, gender;
-    private String licenseNumber;
-    private LocalDate licenseExpiryDate, dob;
+    protected int id;
+    protected String name, gender;
+    protected String licenseNumber;
+    protected LocalDate licenseExpiryDate, dob;
     float salary;
 
     public Driver() {

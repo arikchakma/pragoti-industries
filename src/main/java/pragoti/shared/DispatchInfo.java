@@ -7,11 +7,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class DispatchInfo implements Serializable {
-    private int id, vehicleId, driverId, dispatcherUserId;
+    protected int id, vehicleId, driverId, dispatcherUserId;
     // Status can be: Scheduled, Dispatched, Delivered, Cancelled
-    private String destination, status;
-    private LocalDate dispatchDate, estimatedArrivalDate;
-    private String priority, remarks;
+    protected String destination, status;
+    protected LocalDate dispatchDate, estimatedArrivalDate;
+    protected String priority, remarks;
 
     public DispatchInfo() {
     }
